@@ -1,0 +1,57 @@
+.wrapper {
+    display: inline;
+    line-height: 1.3em;
+    text-decoration: none;
+    color: var(--root-color-link);
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.size_xxs {
+    font-size: var(--root-font-size-xxs);
+}
+
+.size_xs {
+    font-size: var(--root-font-size-xs);
+}
+
+.size_s {
+    font-size: var(--root-font-size-s);
+}
+
+.weight_medium {
+    font-weight: 500;
+}
+
+.weight_bold {
+    font-weight: 700;
+}
+
+.transform_dotted {
+    border-bottom: 1px dotted;
+
+    &:hover {
+        text-decoration: none;
+        border: none;
+    }
+}
+
+.transform_no-underline {
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.color_default {
+    color: var(--root-color-default);
+}
+
+.color_red {
+    color: var(--root-color-red);
+}
+
+.transform_capitalize {
+    text-transform: capitalize;
+}

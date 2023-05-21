@@ -1,0 +1,54 @@
+.containerCollections{
+    width: 70%;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+}
+.width{
+    width: 70%;
+}
+.cardImg {
+    width: 100%;
+    height: 150px;
+    cursor: pointer;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    text-align: center;
+}
+.title{
+    font-weight: bold;
+    cursor: pointer;
+}
+.badge{
+    position: absolute;
+    right:  0;
+    top: 0;
+    background: #177517 !important;
+}
+.yellow{
+    border: #1a1e21 solid 0.2px;
+    background: #f8f800 !important;
+    color: #1a1e21;
+}
+/*!* Стили для планшета *!*/
+@media (max-width: 768px) {
+    .containerCollections {
+        width: 100%; /* 1/4 ширины контейнера */
+    }
+    .width{
+        width: 100%;
+    }
+}
+
+/*!* Стили для телефона *!*/
+@media (max-width: 480px) {
+    .containerCollections {
+        width: 100%; /* 1/2 ширины контейнера */
+    }
+    .width{
+        width: 100%;
+    }
+}

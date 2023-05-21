@@ -1,0 +1,54 @@
+@custom-media --root-media-small only screen and (min-width: 480px);
+@custom-media --root-media-medium only screen and (min-width: 768px);
+@custom-media --root-media-large only screen and (min-width: 960px);
+@custom-media --root-media-wide only screen and (min-width: 1200px);
+@custom-media --root-media-huge only screen and (min-width: 1400px);
+
+:root {
+    --root-color-light: #fff;
+    --root-color-light-warning: #fcf1bd;
+    --root-color-warning: #ff9600;
+    --root-color-yellow: #facd00;
+    --root-color-light-success: #d0efcc;
+    --root-color-success: #33b600;
+    --root-color-red: #f55832;
+    --root-color-muted: #a0b0c7;
+    --root-color-light-muted: #f7f7f7;
+    --root-color-link: #5e8fd5;
+    --root-color-blue: #ebf3f9;
+    --root-color-info: #dde7f5;
+    --root-color-light-error: #efd2ce;
+    --root-color-error: #bb2914;
+    --root-color-default: #3c3c3c;
+    --root-color-shadow: #dde8f0;
+    --root-color-discount: #ffd200;
+    --root-color-black: #000000;
+
+    --root-box-size-none: 0px;
+    --root-box-size-xxs: 4px;
+    --root-box-size-xs: 8px;
+    --root-box-size-s: 12px;
+    --root-box-size-m: 16px;
+    --root-box-size-l: 20px;
+    --root-box-size-xl: 24px;
+    --root-box-size-xxl: 28px;
+
+    --root-box-round-xxs: 2px;
+    --root-box-round-xs: 4px;
+    --root-box-round-s: 6px;
+    --root-box-round-m: 8px;
+    --root-box-round-l: 10px;
+    --root-box-round-xl: 12px;
+    --root-box-round-xxl: 14px;
+
+    --root-font-size-xxs: 11px;
+    --root-font-size-xs: 14px;
+    --root-font-size-s: 16px;
+    --root-font-size-m: 18px;
+    --root-font-size-l: 20px;
+    --root-font-size-xl: 24px;
+
+    --root-grid-indent-xs: 4px;
+    --root-grid-indent-s: 6px;
+    --root-grid-indent-m: 8px;
+}

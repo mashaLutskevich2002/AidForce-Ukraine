@@ -1,0 +1,47 @@
+.show_small {
+    display: block;
+
+    @media (--root-media-small) {
+        display: none;
+    }
+}
+
+.show_medium {
+    display: block;
+
+    @media (--root-media-medium) {
+        display: none;
+    }
+}
+
+.show_large {
+    display: block;
+
+    @media (--root-media-large) {
+        display: none;
+    }
+}
+
+.hide_small {
+    display: none;
+
+    @media (--root-media-small) {
+        display: block;
+    }
+}
+
+.hide_medium {
+    display: none;
+
+    @media (--root-media-medium) {
+        display: block;
+    }
+}
+
+.hide_large {
+    display: none;
+
+    @media (--root-media-large) {
+        display: block;
+    }
+}

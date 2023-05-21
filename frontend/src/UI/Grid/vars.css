@@ -1,0 +1,19 @@
+@custom-media --ek-grid-media-small only screen and (min-width: 480px);
+@custom-media --ek-grid-media-medium only screen and (min-width: 768px);
+@custom-media --ek-grid-media-large only screen and (min-width: 960px);
+@custom-media --ek-grid-media-wide only screen and (min-width: 1200px);
+@custom-media --ek-grid-media-huge only screen and (min-width: 1400px);
+
+:root {
+    /* prop 'grid-indent' */
+    --ek-grid-indent-xxs: 4px;
+    --ek-grid-indent-xs: 8px;
+    --ek-grid-indent-s: 12px;
+    --ek-grid-indent-m: 16px;
+    --ek-grid-indent-l: 20px;
+    --ek-grid-indent-xl: 24px;
+    --ek-grid-indent-xxl: 28px;
+    --ek-grid-indent-3xl: 32px;
+    --ek-grid-indent-4xl: 36px;
+    --ek-grid-indent-5xl: 40px;
+}

@@ -1,0 +1,31 @@
+.wrapper {
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1240px;
+    padding-left: var(--root-box-size-m);
+    padding-right: var(--root-box-size-m);
+}
+
+.height_1-1 {
+    height: 100%;
+}
+
+.padding_none_small {
+    padding: 0;
+
+    @media (--root-media-small) {
+        padding-left: var(--root-box-size-m);
+        padding-right: var(--root-box-size-m);
+    }
+}
+
+.padding_xs_small {
+    padding-left: var(--root-box-size-xs);
+    padding-right: var(--root-box-size-xs);
+
+    @media (--root-media-small) {
+        padding-left: var(--root-box-size-m);
+        padding-right: var(--root-box-size-m);
+    }
+}

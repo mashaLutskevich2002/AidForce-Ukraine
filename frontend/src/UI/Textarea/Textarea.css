@@ -1,0 +1,33 @@
+.wrapper {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 12px;
+    border: 1px solid var(--root-color-shadow);
+    border-radius: 10px;
+    outline: 0;
+    font-size: var(--root-font-size-xs);
+    line-height: 16px;
+    vertical-align: middle;
+
+    &:focus {
+        border-color: var(--root-color-yellow);
+    }
+
+    &::-webkit-input-placeholder {
+        color: var(--root-color-muted);
+    }
+
+    &::-moz-placeholder {
+        color: var(--root-color-muted);
+    }
+
+    &:-ms-input-placeholder {
+        color: var(--root-color-muted);
+    }
+}
+
+.error {
+    border-color: var(--root-color-error);
+}
