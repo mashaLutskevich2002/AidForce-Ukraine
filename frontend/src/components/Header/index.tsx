@@ -1,25 +1,17 @@
-import React from 'react';
-import {
-    Box,
-    Flex,
-    Button,
-    Spacer,
-    Heading,
-    ButtonGroup,
-    VStack,
-    Avatar,
-    Wrap,
-    WrapItem,
-    Text,
-    Image,
-    Link,
-} from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { Box, Flex, Button, Spacer, Heading, ButtonGroup, Wrap, WrapItem, Text, Image, Link } from '@chakra-ui/react';
 import { useAuthUser } from '../../hooks/useAuthUser';
 import './Header.css';
 import { Picture } from '../Picture';
 import { useNavigate } from 'react-router';
+import { Overlay } from '../../UI';
+import { CabinetOverlay } from '../CabinetOverlay';
 
 export const Header = () => {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     const { user } = useAuthUser();
     const navigate = useNavigate();
     const logout = () => {
@@ -38,7 +30,10 @@ export const Header = () => {
                         <Text>
                             {user.name} {user.last_name}
                         </Text>
-                        <Image src={user.photoUrl as string} boxSize='50px' className='avatar' />
+                        <Image src={user.photoUrl as string} boxSize='50px' className='avatar' onClick={handleShow} />
+                        <Overlay handleClose={handleClose} title='Кабінет' show={show} placement='end'>
+                            <CabinetOverlay />
+                        </Overlay>
                         <Link onClick={logout}>Вийти</Link>
                     </WrapItem>
                 </Wrap>

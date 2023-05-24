@@ -18,6 +18,10 @@ export type Collection = {
     monoBankaUrl: string;
     createdAt: string;
     updatedAt: string;
+    report: {
+        photoUrl: string;
+        description: string;
+    };
 };
 
 export type Collections = {

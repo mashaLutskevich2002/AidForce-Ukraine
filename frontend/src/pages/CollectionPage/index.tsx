@@ -11,8 +11,6 @@ export const CollectionPage = () => {
     const { id } = useParams();
     const { user } = useAuthUser();
 
-    console.log(collection?.collectedSum);
-
     useEffect(() => {
         const fetchCollection = async () => {
             try {
@@ -35,9 +33,10 @@ export const CollectionPage = () => {
         <p>
             <Button href={collection.monoBankaUrl}></Button>
             {collection._id} {collection.title}
-            {isCurrentUserOwner && (
+            {isCurrentUserOwner && !collection.report && (
                 <Button onClick={() => navigate(`/closeCollection/${collection?._id}`)}>Закрити збір</Button>
             )}
+            {collection.report && <Button disabled> Збір Закрит </Button>}
         </p>
     );
 };

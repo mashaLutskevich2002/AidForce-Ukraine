@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { Link, useToast, VStack } from '@chakra-ui/react';
+import { Link, VStack } from '@chakra-ui/react';
 import { ErrorMessage } from '../../components/ErrorMessage';
 import { Button, Form, Spinner } from 'react-bootstrap';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -12,8 +12,6 @@ export const LoginPage = () => {
     const [email, setEmail] = useState<string>();
     const [password, setPassword] = useState<string>();
     const [error, setError] = useState<Record<string, string | undefined>>({});
-
-    const toast = useToast();
 
     const onSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();

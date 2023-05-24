@@ -59,6 +59,7 @@ export const RegistrationPage = () => {
             setShowPopup(true);
             setError({});
         } catch (e: any) {
+            console.log(e.response);
             setError({ errorMessage: e ? e.response.data.message : undefined });
         }
         setIsLoading(false);
@@ -86,7 +87,7 @@ export const RegistrationPage = () => {
             return;
         }
     };
-
+    console.log(error);
     return (
         <VStack spacing='10px'>
             <Text>Реєстрація</Text>

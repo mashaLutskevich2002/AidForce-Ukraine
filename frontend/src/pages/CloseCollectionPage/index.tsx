@@ -1,41 +1,109 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
+import { Button, Form, InputGroup, Spinner } from 'react-bootstrap';
+import { Text, VStack } from '@chakra-ui/react';
+import { ErrorMessage } from '../../components/ErrorMessage';
+import { useAuthUser } from '../../hooks/useAuthUser';
+import { Popup } from '../../components/Popup';
 
 export const CloseCollectionPage = () => {
+    const { user } = useAuthUser();
+    const [isLoading, setIsLoading] = useState(false);
     const [photoUrl, setPhotoUrl] = useState('');
     const [description, setDescription] = useState('');
+    const [error, setError] = useState<Record<string, string | undefined>>({});
+    const [showPopup, setShowPopup] = useState(false);
     const { id } = useParams();
+    const navigate = useNavigate();
 
-    const handleFormSubmit = async () => {
+    const handleFormSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsLoading(true);
         try {
-            const response = await axios.put(`http://localhost:5001/api/closeCollection/${id}`, {
-                photoUrl,
-                description,
-            });
-            console.log('Сбор закрыт', response.data);
-            // Очистка полей формы
-            setPhotoUrl('');
-            setDescription('');
-        } catch (error) {
-            console.error('Ошибка при закрытии сбора', error);
+            await axios.put(
+                `http://localhost:5001/api/closeCollection/${id}`,
+                {
+                    photoUrl,
+                    description,
+                },
+                {
+                    headers: {
+                        'Content-type': 'application/json',
+                        Authorization: `Bearer ${user?.token}`,
+                    },
+                },
+            );
+            setShowPopup(true);
+            setError({});
+        } catch (e: any) {
+            console.log(e);
+            setError({ errorMessage: e ? e.response.data.message : undefined });
+        }
+        setIsLoading(false);
+    };
+
+    const postPic = (pics: any) => {
+        if (pics && (pics.type === 'image/jpeg' || pics.type === 'image/png')) {
+            const data = new FormData();
+            data.append('file', pics);
+            data.append('upload_preset', 'aidForce-Ukraine');
+            data.append('cloud_name', 'ddp0dwq9j');
+            fetch('https://api.cloudinary.com/v1_1/ddp0dwq9j/image/upload', {
+                method: 'post',
+                body: data,
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    setPhotoUrl(data.url.toString());
+                    console.log(data.url.toString());
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else {
+            return;
         }
     };
 
     return (
-        <div>
-            <h2>Закрытие сбора</h2>
-            <form onSubmit={handleFormSubmit}>
-                <div>
-                    <label htmlFor='photoUrl'>Фотозвіт:</label>
-                    <input type='text' id='photoUrl' value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} />
-                </div>
-                <div>
-                    <label htmlFor='description'>Опис:</label>
-                    <textarea id='description' value={description} onChange={(e) => setDescription(e.target.value)} />
-                </div>
-                <button type='submit'>Закрыть сбор</button>
-            </form>
-        </div>
+        <VStack spacing='10px'>
+            {isLoading && <Spinner />}
+            {error.errorMessage && <ErrorMessage variant='danger' message={error.errorMessage} />}
+            {showPopup && (
+                <Popup
+                    isShowPopup={showPopup}
+                    animation
+                    isShowButton={false}
+                    onClick={() => navigate('/catalogCollections')}
+                    message='Збір успішно закрит :)'
+                />
+            )}
+            <Text>Закрити збір</Text>
+            <Form onSubmit={handleFormSubmit}>
+                <Form.Label htmlFor='basic-url'>Фотозвіт</Form.Label>
+                <InputGroup>
+                    <Form.Control
+                        accept='image/*'
+                        placeholder='upload file'
+                        type='file'
+                        onChange={(e: any) => postPic(e.target.files[0])}
+                    />
+                </InputGroup>
+                <Form.Label htmlFor='basic-url'>Опис</Form.Label>
+                <InputGroup className='mb-3'>
+                    <Form.Control
+                        as='textarea'
+                        rows={3}
+                        placeholder='Опис'
+                        value={description}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDescription(e.target.value)}
+                    />
+                </InputGroup>
+                <Button type='submit' style={{ marginTop: 15 }}>
+                    Закрити збір
+                </Button>
+            </Form>
+        </VStack>
     );
 };
