@@ -7,6 +7,8 @@ import { useAuthUser } from '../../../hooks/useAuthUser';
 import { useNavigate } from 'react-router';
 import { useLocation } from 'react-router-dom';
 import { EditPage } from '../../EditPage';
+import axios from 'axios';
+import { Collection } from '../../CatalogCollectionsPage/types';
 
 export const CabinetMainSetupProfile = () => {
     const { user } = useAuthUser();
@@ -15,6 +17,32 @@ export const CabinetMainSetupProfile = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [isEdit, setIsEdit] = useState(false);
+
+    const removeUser = async () => {
+        setIsLoading(true);
+        try {
+            await axios.delete(
+                `/api/users/delete/${user?._id}`,
+                // @ts-ignore
+                {
+                    headers: {
+                        'Content-type': 'application/json',
+                        Authorization: `Bearer ${user?.token}`,
+                    },
+                },
+            );
+            localStorage.removeItem('userInfo');
+            window.location.href = '/';
+            // @ts-ignore
+        } catch (error: any) {
+            setError(error.response.data.message);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+    if (isLoading) {
+        return <Spinner />;
+    }
 
     return (
         <VStack spacing='10px'>
@@ -51,6 +79,11 @@ export const CabinetMainSetupProfile = () => {
                     >
                         Редагувати профіль
                     </Button>
+                    {user?.role !== 'admin' && (
+                        <Button onClick={removeUser} style={{ marginTop: 15 }}>
+                            Видалити профіль
+                        </Button>
+                    )}
                 </>
             )}
             {isEdit && location.pathname === '/cabinet/setupProfile/edit' && (

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Grid, Link } from '../../UI';
+import { Grid } from '../../UI';
 import { CabinetOverlay } from '../../components/CabinetOverlay';
 import { Header } from '../../components/Header';
 
@@ -7,7 +7,7 @@ export const CabinetLayoutPage = ({ children }: { children: ReactNode }) => {
     return (
         <>
             <Header />
-            <Grid grid-column={2}>
+            <Grid grid-column={2} className='wrap'>
                 <Grid.Item grid-item-width='1-5'>
                     <CabinetOverlay />
                 </Grid.Item>

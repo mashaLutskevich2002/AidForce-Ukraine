@@ -1,0 +1,12 @@
+.img{
+    width: auto;
+    height: 150px;
+}
+.badgeStatus{
+    position: absolute;
+    left: 0;
+    width: 100px;
+    top: 0;
+    border: #1a1e21 solid;
+    text-align: center;
+}

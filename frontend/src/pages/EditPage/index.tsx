@@ -17,7 +17,6 @@ export const EditPage = ({ setIsEdit }: EditPageProps) => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<Record<string, string | undefined>>({});
     const navigate = useNavigate();
-    const location = useLocation();
     const [name, setName] = useState<string>();
     const [lastName, setLastName] = useState<string>();
     const [email, setEmail] = useState<string>();
@@ -38,15 +37,16 @@ export const EditPage = ({ setIsEdit }: EditPageProps) => {
         setIsLoading(true);
         try {
             const response = await axios.put(
-                `/api/edit`,
+                `http://localhost:5001/api/cabinet/edit`,
                 {
                     name: name ? name : user?.name,
                     last_name: lastName ? lastName : user?.last_name,
-                    password: password && password,
+                    password: password || undefined,
                     email: email ? email : user?.email,
                     photoUrl: photoUrl ? photoUrl : user?.photoUrl,
                     phone: phone ? phone : user?.phone,
                 },
+                // @ts-ignore
                 {
                     headers: {
                         'Content-type': 'application/json',
@@ -69,6 +69,7 @@ export const EditPage = ({ setIsEdit }: EditPageProps) => {
             setError({});
             navigate('/cabinet/setupProfile');
             setIsEdit(false);
+            // @ts-ignore
         } catch (e: any) {
             console.log(e);
             setError({ errorMessage: e ? e.response.data.message : undefined });

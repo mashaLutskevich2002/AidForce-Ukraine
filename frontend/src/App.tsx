@@ -10,7 +10,8 @@ import { CloseCollectionPage } from './pages/CloseCollectionPage';
 import { CabinetPage } from './pages/CabinetPage';
 import { CabinetMainCollections } from './pages/CabinetLayoutPage/views/CabinetMainCollections';
 import { CabinetMainSetupProfile } from './pages/CabinetLayoutPage/views/CabinetMainSetupProfile';
-import { EditPage } from './pages/EditPage';
+import { CabinetMainApplication } from './pages/CabinetLayoutPage/views/CabinetMainApplication';
+import { CompanyPage } from './pages/CompanyPage';
 
 function App() {
     return (
@@ -23,10 +24,13 @@ function App() {
                 <Route path='/catalogCollections' Component={CatalogCollectionsPage} />
                 <Route path='/collection/:id' Component={CollectionPage} />
                 <Route path='/closeCollection/:id' Component={CloseCollectionPage} />
+                <Route path='/company/:id' Component={CompanyPage} />
                 <Route path='/cabinet' Component={CabinetPage}>
                     <Route path='/cabinet/collections' Component={CabinetMainCollections} />
                     <Route path='/cabinet/setupProfile' Component={CabinetMainSetupProfile} />
                     <Route path='/cabinet/setupProfile/edit' Component={CabinetMainSetupProfile} />
+                    <Route path='/cabinet/adminApplications' Component={CabinetMainCollections} />
+                    <Route path='/cabinet/applications' Component={CabinetMainApplication} />
                 </Route>
             </Routes>
         </BrowserRouter>

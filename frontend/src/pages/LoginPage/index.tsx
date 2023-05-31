@@ -22,6 +22,7 @@ export const LoginPage = () => {
                     email,
                     password,
                 },
+                // @ts-ignore
                 {
                     headers: {
                         'Content-type': 'application/json',
@@ -30,6 +31,7 @@ export const LoginPage = () => {
             );
             localStorage.setItem('userInfo', JSON.stringify(data));
             navigate('/');
+            // @ts-ignore
         } catch (e: any) {
             setError({ errorMessage: e ? e.response.data.message : undefined });
         }

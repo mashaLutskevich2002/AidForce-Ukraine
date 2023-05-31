@@ -6,6 +6,7 @@ import { useAuthUser } from '../../hooks/useAuthUser';
 import { Popup } from '../../components/Popup';
 import { useNavigate } from 'react-router';
 import { ErrorMessage } from '../../components/ErrorMessage';
+import { Header } from '../../components/Header';
 
 export const CreateCollectionPage = () => {
     const { user } = useAuthUser();
@@ -31,7 +32,7 @@ export const CreateCollectionPage = () => {
         setIsLoading(true);
         try {
             await axios.post(
-                'http://localhost:5001/api/collection',
+                'http://localhost:5001/api/application/createApplication',
                 {
                     title,
                     description,
@@ -40,6 +41,7 @@ export const CreateCollectionPage = () => {
                     location,
                     monoBankaUrl,
                 },
+                // @ts-ignore
                 {
                     headers: {
                         'Content-type': 'application/json',
@@ -49,6 +51,7 @@ export const CreateCollectionPage = () => {
             );
             setShowPopup(true);
             setError({});
+            // @ts-ignore
         } catch (e: any) {
             setError({ errorMessage: e ? e.response.data.message : undefined });
         }
@@ -93,15 +96,16 @@ export const CreateCollectionPage = () => {
 
     return (
         <>
+            <Header />
             <VStack spacing='10px'>
-                <Text>Створюй збір, допомагай нашим захисникам</Text>
+                <h3>Створюй збір, допомагай нашим захисникам</h3>
                 {showPopup && (
                     <Popup
                         isShowPopup={showPopup}
                         animation
                         isShowButton={false}
                         onClick={() => navigate('/')}
-                        message='Збір успішно відкрит :)'
+                        message='Збір успішно створений і знаходиться в процесі обробки :)'
                     />
                 )}
                 {isLoading && <Spinner />}

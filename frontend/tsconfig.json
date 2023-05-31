@@ -18,7 +18,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react",
+    "paths": {
+      "react-google-maps": ["node_modules/react-google-maps/api"],
+      "react-script":["declareTypes/script.d.ts"]
+    }
   },
   "include": [
     "src"

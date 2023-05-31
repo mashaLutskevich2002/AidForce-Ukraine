@@ -1,17 +1,12 @@
-import { Request, Response, NextFunction } from "express";
-const verify = require("jsonwebtoken");
-import User, from "../models/userModel";
+const { verify } = require("jsonwebtoken");
+const User = require("../models/userModel.js");
 
-const authMiddleware = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> => {
+const authMiddleware = async (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (authHeader) {
     const token = authHeader.split(" ")[1];
     try {
-      const payload = verify(token, process.env.JWT_SECRET) as { id: string };
+      const payload = verify(token, process.env.JWT_SECRET);
       const user = await User.findById(payload.id);
       if (!user) {
         res.status(401).json({ error: "Нема такого користувача" });
@@ -27,4 +22,4 @@ const authMiddleware = async (
   }
 };
 
-export { authMiddleware };
+module.exports = { authMiddleware };

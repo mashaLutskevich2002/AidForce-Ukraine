@@ -20,13 +20,15 @@ export const CloseCollectionPage = () => {
     const handleFormSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsLoading(true);
+
         try {
             await axios.put(
-                `http://localhost:5001/api/closeCollection/${id}`,
+                `http://localhost:5001/api/collection/closeCollection/${id}`,
                 {
                     photoUrl,
                     description,
                 },
+                // @ts-ignore
                 {
                     headers: {
                         'Content-type': 'application/json',
@@ -36,8 +38,8 @@ export const CloseCollectionPage = () => {
             );
             setShowPopup(true);
             setError({});
+            // @ts-ignore
         } catch (e: any) {
-            console.log(e);
             setError({ errorMessage: e ? e.response.data.message : undefined });
         }
         setIsLoading(false);

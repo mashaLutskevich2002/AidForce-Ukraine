@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 export interface User {
     _id: string;
@@ -7,9 +7,9 @@ export interface User {
     email: string;
     role: string;
     phone: string;
-    cardNumber: string;
     photoUrl: string;
     token: string;
+    createdAt: string;
 }
 
 export const useAuthUser = () => {

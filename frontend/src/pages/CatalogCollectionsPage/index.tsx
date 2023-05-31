@@ -1,28 +1,36 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import axios from 'axios';
-import { Collection, Collections } from './types';
-import { Badge, Button, Form, InputGroup, Pagination } from 'react-bootstrap';
-import './CatalogCollectionStyle.css';
-import { Text, VStack } from '@chakra-ui/react';
-import { Grid, Box } from '../../UI';
 import { useNavigate } from 'react-router';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+
+import { Badge, Button, Form, InputGroup, ProgressBar, Spinner } from 'react-bootstrap';
+
+import { Text } from '@chakra-ui/react';
+import { Box, Grid } from '../../UI';
+
+import { Collection, Collections } from './types';
+
 import Paginator from '../../components/Paginator';
 import { Header } from '../../components/Header';
-import { isEmpty } from '../../utils/isEmpty';
-import { useLocation } from 'react-router-dom';
+
+import './CatalogCollectionStyle.css';
+import { CatalogCollectionItem } from './views/CatalogCollectionItem';
+import { Footer } from '../../components/Footer';
 
 export const CatalogCollectionsPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-
+    const [isLoading, setIsLoading] = useState(false);
     const [collections, setCollections] = useState<Collections>();
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     useEffect(() => {
         const fetchCollections = async () => {
+            setIsLoading(true);
             try {
-                const response = await axios.get(`/api/collections`, {
+                // @ts-ignore
+                const response = await axios.get(`/api/collection/getCollections`, {
                     params: {
                         page: currentPage,
                         search_term: searchQuery,
@@ -33,6 +41,8 @@ export const CatalogCollectionsPage = () => {
                 setTotalPages(response.data.totalPages);
             } catch (error) {
                 console.error(error);
+            } finally {
+                setIsLoading(false);
             }
         };
 
@@ -50,8 +60,10 @@ export const CatalogCollectionsPage = () => {
     };
 
     const handleSearch = async () => {
+        setIsLoading(true);
         try {
-            const response = await axios.get(`/api/collections`, {
+            // @ts-ignore
+            const response = await axios.get(`http://localhost:5001/api/collection/getCollections`, {
                 params: {
                     page: currentPage,
                     search_term: searchQuery,
@@ -70,120 +82,64 @@ export const CatalogCollectionsPage = () => {
             }
         } catch (error) {
             console.error(error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
     return (
         <>
             <Header />
-            <Box>
-                <Box className='search'>
-                    <InputGroup className='mb-3'>
-                        <Form.Control
-                            placeholder='Шукаю..'
-                            type='text'
-                            value={searchQuery}
-                            onChange={handleSearchChange}
-                        />
-                    </InputGroup>
-                    <Button onClick={handleSearch}>Пошук</Button>
-                </Box>
+            <Box className='wrap'>
+                <InputGroup className='mb-3 searchBlock'>
+                    <Form.Control
+                        placeholder='Шукаю..'
+                        className='search'
+                        type='text'
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                    />
+                    <Button onClick={handleSearch} className='button'>
+                        Пошук
+                    </Button>
+                </InputGroup>
+
                 <Grid.Item>
-                    <Text textAlign='center'>Пріорітетні збори</Text>
+                    <Text textAlign='center'>
+                        <h2>Пріорітетні збори</h2>
+                    </Text>
                 </Grid.Item>
-                <div className='d-flex justify-content-center '>
+                <div className='d-flex justify-content-center'>
                     <div className='row row-cols-2 row-cols-md-3 row-cols-lg-5 containerCollections'>
                         {militaryCollections &&
                             militaryCollections.map((item: Collection) => {
-                                const hryvnia = Math.floor(item.collectedSum / 100);
-                                const kopiyka = item.collectedSum % 100;
-                                const collectedSum = item.collectedSum ? `${hryvnia}.${kopiyka} грн` : `0 грн`;
-                                return (
-                                    <div
-                                        className={
-                                            item.report ? 'col card center m-2 background' : 'col card center m-2'
-                                        }
-                                    >
-                                        <div className='position-relative'>
-                                            <img
-                                                src={item.report ? item.report.photoUrl : item.picUrl}
-                                                className='cardImg p-2'
-                                                onClick={() => navigate(`/collection/${item._id}`)}
-                                            />
-                                            <Badge className='badge'>ЗСУ</Badge>
-
-                                            <div className='card-body'>
-                                                <Text
-                                                    className='title'
-                                                    onClick={() => navigate(`/collection/${item._id}`)}
-                                                >
-                                                    {item.title}
-                                                </Text>
-                                                <Text>Вже зібрано {collectedSum}</Text>
-                                                <p className='card-text'>{item.amount}</p>
-                                                {item.report ? (
-                                                    <Button disabled> Зібрано </Button>
-                                                ) : (
-                                                    <Button href={item.monoBankaUrl}>Допомогти</Button>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
-                                );
+                                return <CatalogCollectionItem item={item} />;
                             })}
                     </div>
                 </div>
 
                 <Grid.Item>
                     <Box box-align='center'>
-                        <Text>Всі збори</Text>
+                        <Text>
+                            <h2>Всі збори</h2>
+                        </Text>
                     </Box>
                 </Grid.Item>
 
                 <div className='d-flex justify-content-center '>
-                    <div className='row row-cols-2 row-cols-md-3 row-cols-lg-5 justify-content-center width'>
+                    <div className='card-container '>
                         {nonMilitaryCollections &&
                             nonMilitaryCollections.map((item: Collection) => {
-                                const hryvnia = Math.floor(item.collectedSum / 100);
-                                const kopiyka = item.collectedSum % 100;
-                                const collectedSum = item.collectedSum ? `${hryvnia}.${kopiyka} грн` : `0 грн`;
-                                return (
-                                    <div
-                                        className={
-                                            item.report ? 'col card center m-2 background' : 'col card center m-2'
-                                        }
-                                    >
-                                        <div className='position-relative'>
-                                            <img
-                                                src={item.report ? item.report.photoUrl : item.picUrl}
-                                                className='cardImg p-2'
-                                                onClick={() => navigate(`/collection/${item._id}`)}
-                                            />
-                                            <Badge className='badge yellow'>Влт</Badge>
-                                            <div className='card-body'>
-                                                <Text
-                                                    className='title'
-                                                    onClick={() => navigate(`/collection/${item._id}`)}
-                                                >
-                                                    {item.title}
-                                                </Text>
-                                                <Text>Вже зібрано {collectedSum}</Text>
-                                                <p className='card-text'>{item.amount}</p>
-                                                {item.report ? (
-                                                    <Button disabled> Зібрано </Button>
-                                                ) : (
-                                                    <Button href={item.monoBankaUrl}>Допомогти</Button>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
-                                );
+                                return <CatalogCollectionItem item={item} />;
                             })}
                     </div>
                 </div>
-                {totalPages > 1 && (
-                    <Paginator currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
-                )}
+                <Box box-margin={['s', null, null, null]}>
+                    {totalPages > 1 && (
+                        <Paginator currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+                    )}
+                </Box>
+                <Footer />
             </Box>
         </>
     );

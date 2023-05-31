@@ -1,3 +1,76 @@
 .avatar{
     border-radius: 50px;
 }
+.navbar{
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(61,48,48,1) 100%, rgba(0,212,255,1) 100%);
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+}
+
+.logo{
+    background: rgb(249,255,76);
+    background: linear-gradient(90deg, rgba(249,255,76,0.999019676229867) 46%, rgba(0,212,255,1) 73%);
+    font-size: 25px;
+    border-radius: 10px;
+    width: 200px;
+    text-align: center;
+}
+.logo:hover{
+    text-decoration:none;
+    cursor: pointer;
+}
+
+.text{
+    font-size: 20px;
+}
+
+.link{
+    color: white;
+    text-decoration:none;
+    font-size: 20px;
+}
+
+.link:hover {
+    color: white;
+    text-decoration:underline;
+    cursor: pointer;
+}
+
+.burger{
+    background: white;
+}
+
+.button{
+    color: #1a1e21;
+    background: #fcf04e;
+}
+
+
+@media (max-width: 992px) {
+    .containerCollections {
+        width: 100%; /* 1/4 ширины контейнера */
+    }
+    .width{
+        width: 100%;
+    }
+    .search{
+        width: 100%;
+    }
+    .collapse{
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+    .logoCenter{
+        margin:0 auto;
+    }
+}
+
+
+

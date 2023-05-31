@@ -18,7 +18,6 @@ export const RegistrationPage = () => {
     const [confirmPassword, setConfirmPassword] = useState<string>();
     const [password, setPassword] = useState<string>();
     const [phone, setPhone] = useState<string>();
-    const [cardNumber, setCardNumber] = useState<string>();
     const [photoUrl, setPhotoUrl] = useState<string | number | readonly string[] | undefined>();
     const [role, setRole] = useState<string>();
     const [militaryTicket, setMilitaryTicket] = useState<string>();
@@ -45,11 +44,11 @@ export const RegistrationPage = () => {
                     email,
                     password,
                     phone,
-                    cardNumber,
                     role,
                     militaryTicket,
                     photoUrl,
                 },
+                // @ts-ignore
                 {
                     headers: {
                         'Content-type': 'application/json',
@@ -58,8 +57,8 @@ export const RegistrationPage = () => {
             );
             setShowPopup(true);
             setError({});
+            // @ts-ignore
         } catch (e: any) {
-            console.log(e.response);
             setError({ errorMessage: e ? e.response.data.message : undefined });
         }
         setIsLoading(false);
@@ -78,7 +77,6 @@ export const RegistrationPage = () => {
                 .then((res) => res.json())
                 .then((data) => {
                     setPhotoUrl(data.url.toString());
-                    console.log(data.url.toString());
                 })
                 .catch((err) => {
                     console.log(err);
@@ -87,7 +85,7 @@ export const RegistrationPage = () => {
             return;
         }
     };
-    console.log(error);
+
     return (
         <VStack spacing='10px'>
             <Text>Реєстрація</Text>
@@ -131,15 +129,6 @@ export const RegistrationPage = () => {
                         mask='+380(99)-99-99-999'
                         value={phone}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPhone(e.target.value)}
-                        className='mask'
-                    />
-                </InputGroup>
-                <Form.Label htmlFor='basic-url'>Номер банківської картки</Form.Label>
-                <InputGroup className='mb-3'>
-                    <InputMask
-                        mask='9999/9999/9999/9999'
-                        value={cardNumber}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCardNumber(e.target.value)}
                         className='mask'
                     />
                 </InputGroup>
