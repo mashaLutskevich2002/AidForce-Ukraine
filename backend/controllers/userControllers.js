@@ -4,6 +4,7 @@ const { generateToken } = require("../utils/generateToken.js");
 const fs = require("fs");
 const { genSalt, hash } = require("bcrypt");
 const Application = require("../models/applicationModel");
+const { BASE_DIR } = require("../config");
 
 //@description     Register new user
 //@route           POST /api/user/
@@ -105,7 +106,7 @@ const registrationUser = asyncHandler(async (request, res) => {
   // Чтение содержимого файла mockMilitaryTickets.json
   const readMockMilitaryTickets = () => {
     const jsonData = fs.readFileSync(
-      "backend/mockMilitaryTickets/mockMilitaryTickets.json",
+      `${BASE_DIR}/static/mockMilitaryTickets.json`,
       "utf8"
     );
     return JSON.parse(jsonData);

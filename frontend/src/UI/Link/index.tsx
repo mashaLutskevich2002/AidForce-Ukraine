@@ -38,16 +38,16 @@ export const Link = ({
 }: LinkProps) => {
     const props = {
         title,
-        className: classSet(
-            css.wrapper,
-            {
-                [css[`size_${size}`]]: !!size,
-                [css[`weight_${weight}`]]: !!weight,
-                [css[`transform_${transform}`]]: !!transform,
-                [css[`color_${color}`]]: !!color,
-            },
-            className,
-        ),
+        // className: classSet(
+        //     css.wrapper,
+        //     {
+        //         [css[`size_${size}`]]: !!size,
+        //         [css[`weight_${weight}`]]: !!weight,
+        //         [css[`transform_${transform}`]]: !!transform,
+        //         [css[`color_${color}`]]: !!color,
+        //     },
+        //     className,
+        // ),
         'data-qaid': qaId,
         onClick,
     };

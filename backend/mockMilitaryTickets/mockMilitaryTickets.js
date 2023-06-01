@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { BASE_DIR } = require('../config');
 
 // Генерация моковых военных билетов
 const generateMilitaryTicket = () => {
@@ -19,7 +20,7 @@ const generateMockMilitaryTickets = () => {
   }
 
   const jsonData = JSON.stringify(tickets, null, 2);
-  fs.writeFileSync("mockMilitaryTickets.json", jsonData);
+  fs.writeFileSync(`${BASE_DIR}/static/mockMilitaryTickets.json`, jsonData);
 };
 
 generateMockMilitaryTickets();

@@ -21,15 +21,15 @@ export const Skeleton = memo(
         return (
             <div
                 data-qaid={qaId}
-                className={classSet(
-                    css.wrapper,
-                    {
-                        [css[`theme_${theme}`]]: !!theme,
-                        [css[`variant_${variation}`]]: !!variation,
-                        [css[`round_${round}`]]: !!round,
-                    },
-                    className,
-                )}
+                // className={classSet(
+                //     css.wrapper,
+                //     {
+                //         [css[`theme_${theme}`]]: !!theme,
+                //         [css[`variant_${variation}`]]: !!variation,
+                //         [css[`round_${round}`]]: !!round,
+                //     },
+                //     className,
+                // )}
                 style={blockStyle}
             />
         );

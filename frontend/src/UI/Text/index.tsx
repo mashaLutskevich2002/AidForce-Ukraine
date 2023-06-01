@@ -36,18 +36,18 @@ export const Text = ({
         <Tag
             title={titleText}
             data-qaid={qaId}
-            className={classSet(
-                css.wrapper,
-                {
-                    [css[`size_${size}`]]: !!size,
-                    [css[`color_${color}`]]: !!color,
-                    [css[`weight_${weight}`]]: !!weight,
-                    [css[`wrap_${wrap}`]]: !!wrap,
-                    [css[`transform_${transform}`]]: !!transform,
-                    [css[`decoration_${decoration}`]]: !!decoration,
-                },
-                className,
-            )}
+            // className={classSet(
+            //     css.wrapper,
+            //     {
+            //         [css[`size_${size}`]]: !!size,
+            //         [css[`color_${color}`]]: !!color,
+            //         [css[`weight_${weight}`]]: !!weight,
+            //         [css[`wrap_${wrap}`]]: !!wrap,
+            //         [css[`transform_${transform}`]]: !!transform,
+            //         [css[`decoration_${decoration}`]]: !!decoration,
+            //     },
+            //     className,
+            // )}
         >
             {children}
         </Tag>
