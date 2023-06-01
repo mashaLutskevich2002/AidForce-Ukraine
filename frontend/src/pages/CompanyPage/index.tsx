@@ -16,7 +16,7 @@ export const CompanyPage = () => {
     useEffect(() => {
         const fetchCompanyInfo = async () => {
             try {
-                const response = await axios.get(`http://localhost:5001/api/company/${id}`);
+                const response = await axios.get(`/api/company/${id}`);
                 const { user, collections } = response.data;
                 setUser(user);
                 setCollections(collections);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Application, Collection } from '../../CatalogCollectionsPage/types';
+import { Application } from '../../CatalogCollectionsPage/types';
 import { Badge, Button, Spinner } from 'react-bootstrap';
 import { Text } from '@chakra-ui/react';
 import axios from 'axios';

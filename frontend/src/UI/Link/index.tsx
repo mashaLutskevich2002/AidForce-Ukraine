@@ -1,8 +1,5 @@
 import React, { ReactNode } from 'react';
 import { Link as ReactLink } from 'react-router-dom';
-import classSet from 'classnames';
-
-import css from './Link.css';
 
 interface LinkProps {
     href?: string;

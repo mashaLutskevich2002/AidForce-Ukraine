@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Image, Link } from '@chakra-ui/react';
 import { useAuthUser } from '../../hooks/useAuthUser';
 import './Header.css';
-import { Picture } from '../Picture';
 import { useNavigate } from 'react-router';
 import { Grid, Overlay, Text, Box } from '../../UI';
 import { CabinetOverlay } from '../CabinetOverlay';

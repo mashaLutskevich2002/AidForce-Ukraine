@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router';
 import { useLocation } from 'react-router-dom';
 import { EditPage } from '../../EditPage';
 import axios from 'axios';
-import { Collection } from '../../CatalogCollectionsPage/types';
+
 
 export const CabinetMainSetupProfile = () => {
     const { user } = useAuthUser();

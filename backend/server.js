@@ -25,15 +25,15 @@ const {
   deleteApplication,
 } = require("./controllers/applicationContoller");
 const { getCompanyById } = require("./controllers/companyController");
-const { BASE_DIR } = require("./config");
+const { BASE_DIR, ENV_PATH } = require("./config");
 
 
-console.log('BASE_DIR', BASE_DIR);
+console.log('ENV_PATH', ENV_PATH);
 
 const HTML_FILE = `${BASE_DIR}/build/index.html`;
 
 const app = express();
-dotenv.config();
+dotenv.config({path: ENV_PATH});
 connectMongoDB();
 app.use(express.json());
 

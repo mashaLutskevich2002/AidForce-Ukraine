@@ -1,5 +1,4 @@
 import React, { ChangeEvent, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { Grid } from '../../UI';
@@ -37,7 +36,7 @@ export const EditPage = ({ setIsEdit }: EditPageProps) => {
         setIsLoading(true);
         try {
             const response = await axios.put(
-                `http://localhost:5001/api/cabinet/edit`,
+                `/api/cabinet/edit`,
                 {
                     name: name ? name : user?.name,
                     last_name: lastName ? lastName : user?.last_name,
@@ -99,6 +98,8 @@ export const EditPage = ({ setIsEdit }: EditPageProps) => {
             return;
         }
     };
+
+    console.log(isLoading);
     return (
         <Form onSubmit={editForm}>
             <Grid grid-column={2} grid-indent='s'>

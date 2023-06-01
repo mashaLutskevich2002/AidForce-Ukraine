@@ -3,7 +3,7 @@ import { Collection } from '../../CatalogCollectionsPage/types';
 import { Badge, Button, Spinner } from 'react-bootstrap';
 import { Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router';
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { useAuthUser } from '../../../hooks/useAuthUser';
 interface CollectionItemProps {
@@ -46,6 +46,7 @@ export const CollectionItem = ({ item, collections, setCollections }: Collection
     if (isLoading) {
         return <Spinner />;
     }
+    console.log(error);
     return (
         <div className={item.report ? 'col card center m-2 background' : 'col card center m-2'}>
             <div className='position-relative'>

@@ -1,7 +1,4 @@
 import React, { memo } from 'react';
-import classSet from 'classnames';
-
-import css from './Skeleton.css';
 
 interface SkeletonProps {
     width?: string | number;

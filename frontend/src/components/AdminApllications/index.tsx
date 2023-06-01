@@ -2,9 +2,9 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import { Badge, Button, Spinner } from 'react-bootstrap';
-import { Link, Text } from '@chakra-ui/react';
-import { Grid, Box } from '../../UI';
+import {  Spinner } from 'react-bootstrap';
+import {  Text } from '@chakra-ui/react';
+import { Grid,  } from '../../UI';
 
 import { Application } from '../../pages/CatalogCollectionsPage/types';
 import { useAuthUser } from '../../hooks/useAuthUser';
@@ -21,7 +21,7 @@ export const AdminApplications = () => {
         setIsLoading(true);
         try {
             // @ts-ignore
-            const response = await axios.get(`http://localhost:5001/api/application/getApplications`, {
+            const response = await axios.get(`/api/application/getApplications`, {
                 headers: {
                     'Content-type': 'application/json',
                     Authorization: `Bearer ${user?.token}`,

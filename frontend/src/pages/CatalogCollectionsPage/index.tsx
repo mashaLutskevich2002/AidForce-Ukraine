@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
-import { Badge, Button, Form, InputGroup, ProgressBar, Spinner } from 'react-bootstrap';
+import {  Button, Form, InputGroup } from 'react-bootstrap';
 
 import { Text } from '@chakra-ui/react';
 import { Box, Grid } from '../../UI';
@@ -59,11 +59,13 @@ export const CatalogCollectionsPage = () => {
         setSearchQuery(event.target.value);
     };
 
+    console.log(isLoading);
+
     const handleSearch = async () => {
         setIsLoading(true);
         try {
             // @ts-ignore
-            const response = await axios.get(`http://localhost:5001/api/collection/getCollections`, {
+            const response = await axios.get(`/api/collection/getCollections`, {
                 params: {
                     page: currentPage,
                     search_term: searchQuery,

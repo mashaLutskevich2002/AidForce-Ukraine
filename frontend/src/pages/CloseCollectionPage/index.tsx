@@ -23,7 +23,7 @@ export const CloseCollectionPage = () => {
 
         try {
             await axios.put(
-                `http://localhost:5001/api/collection/closeCollection/${id}`,
+                `/api/collection/closeCollection/${id}`,
                 {
                     photoUrl,
                     description,

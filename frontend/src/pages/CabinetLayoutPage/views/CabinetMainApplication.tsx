@@ -1,9 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
-import { Application, Applications, Collection } from '../../CatalogCollectionsPage/types';
-import { Badge, Button, Spinner } from 'react-bootstrap';
-import { Text } from '@chakra-ui/react';
-import { useNavigate } from 'react-router';
+import { Application} from '../../CatalogCollectionsPage/types';
+import {  Spinner } from 'react-bootstrap';
 import { Grid } from '../../../UI';
 import { useAuthUser } from '../../../hooks/useAuthUser';
 import { useEffect, useState } from 'react';
@@ -17,7 +15,7 @@ export const CabinetMainApplication = () => {
         setIsLoading(true);
         try {
             // @ts-ignore
-            const response = await axios.get(`http://localhost:5001/api/cabinet`, {
+            const response = await axios.get(`/api/cabinet`, {
                 headers: {
                     'Content-type': 'application/json',
                     Authorization: `Bearer ${user?.token}`,
