@@ -1,5 +1,3 @@
-import React from 'react';
-
 export type Collection = {
     _id: string;
     user: {

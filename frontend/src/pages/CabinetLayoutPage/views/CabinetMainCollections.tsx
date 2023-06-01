@@ -3,9 +3,7 @@ import { Grid } from '../../../UI';
 import axios from 'axios';
 import { useAuthUser } from '../../../hooks/useAuthUser';
 import { Collection } from '../../CatalogCollectionsPage/types';
-import { Badge, Button, Spinner } from 'react-bootstrap';
-import { Text } from '@chakra-ui/react';
-import { useNavigate } from 'react-router';
+import {  Spinner } from 'react-bootstrap';
 
 import '../CabinetLayoutPage.css';
 import { AdminApplications } from '../../../components/AdminApllications';
@@ -19,7 +17,7 @@ export const CabinetMainCollections = () => {
         setIsLoading(true);
         try {
             // @ts-ignore
-            const response = await axios.get(`http://localhost:5001/api/cabinet`, {
+            const response = await axios.get(`/api/cabinet`, {
                 headers: {
                     'Content-type': 'application/json',
                     Authorization: `Bearer ${user?.token}`,

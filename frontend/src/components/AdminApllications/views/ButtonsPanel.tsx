@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button } from 'react-bootstrap';
 import { Grid } from '../../../UI';
 import axios from 'axios';
-import { ChangeEvent, useState } from 'react';
+import {  useState } from 'react';
 import { useAuthUser } from '../../../hooks/useAuthUser';
 
 interface ButtonsPanelProps {
@@ -11,7 +11,7 @@ interface ButtonsPanelProps {
     status: string;
 }
 export const ButtonsPanel = ({ id, setStatus, status }: ButtonsPanelProps) => {
-    const [isLoading, setIsLoading] = useState(false);
+    const [, setIsLoading] = useState(false);
     const { user } = useAuthUser();
 
     const onSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, status: string) => {
@@ -21,7 +21,7 @@ export const ButtonsPanel = ({ id, setStatus, status }: ButtonsPanelProps) => {
         try {
             // @ts-ignore
             const response = await axios.put(
-                `http://localhost:5001/api/application/changeStatus`,
+                `/api/application/changeStatus`,
                 {
                     id,
                     status,

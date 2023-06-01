@@ -3,7 +3,7 @@ import { Collection } from '../CatalogCollectionsPage/types';
 import { useNavigate, useParams } from 'react-router';
 import axios from 'axios';
 import { Button, ProgressBar } from 'react-bootstrap';
-import { useAuthUser, User } from '../../hooks/useAuthUser';
+import { useAuthUser } from '../../hooks/useAuthUser';
 import { Header } from '../../components/Header';
 import { Box, Grid, Text } from '../../UI';
 import { Picture } from '../../components/Picture';
@@ -23,7 +23,7 @@ export const CollectionPage = () => {
     useEffect(() => {
         const fetchCollection = async () => {
             try {
-                const response = await axios.get(`http://localhost:5001/api/collection/${id}`);
+                const response = await axios.get(`/api/collection/${id}`);
                 const collectionData = response.data;
                 setCollection(collectionData);
             } catch (error) {

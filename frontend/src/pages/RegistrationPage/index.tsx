@@ -37,7 +37,7 @@ export const RegistrationPage = () => {
         setIsLoading(true);
         try {
             await axios.post(
-                'http://localhost:5001/api/users',
+                '/api/users',
                 {
                     name,
                     last_name: lastName,

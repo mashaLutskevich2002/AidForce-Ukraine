@@ -1,7 +1,4 @@
 import React, { memo } from 'react';
-import classSet from 'classnames';
-
-import css from './Skeleton.css';
 
 interface SkeletonProps {
     width?: string | number;
@@ -21,15 +18,15 @@ export const Skeleton = memo(
         return (
             <div
                 data-qaid={qaId}
-                className={classSet(
-                    css.wrapper,
-                    {
-                        [css[`theme_${theme}`]]: !!theme,
-                        [css[`variant_${variation}`]]: !!variation,
-                        [css[`round_${round}`]]: !!round,
-                    },
-                    className,
-                )}
+                // className={classSet(
+                //     css.wrapper,
+                //     {
+                //         [css[`theme_${theme}`]]: !!theme,
+                //         [css[`variant_${variation}`]]: !!variation,
+                //         [css[`round_${round}`]]: !!round,
+                //     },
+                //     className,
+                // )}
                 style={blockStyle}
             />
         );

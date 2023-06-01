@@ -17,7 +17,7 @@ export const LoginPage = () => {
         e.preventDefault();
         try {
             const { data } = await axios.post(
-                'http://localhost:5001/api/users/login',
+                '/api/users/login',
                 {
                     email,
                     password,

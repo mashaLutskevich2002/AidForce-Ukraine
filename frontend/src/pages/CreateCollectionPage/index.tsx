@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import { Text, VStack } from '@chakra-ui/react';
+import {  VStack } from '@chakra-ui/react';
 import { Button, Form, InputGroup, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 import { useAuthUser } from '../../hooks/useAuthUser';
@@ -32,7 +32,7 @@ export const CreateCollectionPage = () => {
         setIsLoading(true);
         try {
             await axios.post(
-                'http://localhost:5001/api/application/createApplication',
+                '/api/application/createApplication',
                 {
                     title,
                     description,

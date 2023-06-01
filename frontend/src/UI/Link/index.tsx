@@ -1,8 +1,5 @@
 import React, { ReactNode } from 'react';
 import { Link as ReactLink } from 'react-router-dom';
-import classSet from 'classnames';
-
-import css from './Link.css';
 
 interface LinkProps {
     href?: string;
@@ -38,16 +35,16 @@ export const Link = ({
 }: LinkProps) => {
     const props = {
         title,
-        className: classSet(
-            css.wrapper,
-            {
-                [css[`size_${size}`]]: !!size,
-                [css[`weight_${weight}`]]: !!weight,
-                [css[`transform_${transform}`]]: !!transform,
-                [css[`color_${color}`]]: !!color,
-            },
-            className,
-        ),
+        // className: classSet(
+        //     css.wrapper,
+        //     {
+        //         [css[`size_${size}`]]: !!size,
+        //         [css[`weight_${weight}`]]: !!weight,
+        //         [css[`transform_${transform}`]]: !!transform,
+        //         [css[`color_${color}`]]: !!color,
+        //     },
+        //     className,
+        // ),
         'data-qaid': qaId,
         onClick,
     };
