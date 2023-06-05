@@ -99,6 +99,7 @@ export const EditPage = ({ setIsEdit, removeUser }: EditPageProps) => {
             return;
         }
     };
+  
     if (isLoading) {
         return <Spinner />;
     }

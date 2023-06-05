@@ -47,6 +47,7 @@ export const CollectionItem = ({ item, collections, setCollections }: Collection
     if (isLoading) {
         return <Spinner />;
     }
+    console.log(error);
     return (
       <>
           <div className="cabinet">
