@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Application } from '../../CatalogCollectionsPage/types';
 import { Badge, Button, Spinner } from "react-bootstrap";
-import { Text } from '@chakra-ui/react';
 import axios from 'axios';
 import { useAuthUser } from '../../../hooks/useAuthUser';
 import { useState } from 'react';

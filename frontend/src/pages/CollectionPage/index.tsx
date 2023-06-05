@@ -5,7 +5,6 @@ import axios from 'axios';
 import { Button, ProgressBar } from 'react-bootstrap';
 import { useAuthUser } from '../../hooks/useAuthUser';
 import { Box, Grid, Text, Link } from "../../UI";
-import { Header } from '../../components/Header';
 import { Picture } from '../../components/Picture';
 import { GoogleMapUi } from "../../components/Map";
 

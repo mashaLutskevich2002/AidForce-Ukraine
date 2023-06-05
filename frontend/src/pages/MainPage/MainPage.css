@@ -9,18 +9,17 @@
 .hero {
     background: linear-gradient(135deg, #FDFCA9, #A1F7FF);
     padding: 80px 0;
-    padding: 80px 0;
     border: 1px solid #ddd;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .hero-content {
     text-align: center;
     max-width: 800px;
-    margin: 0 auto;
 }
 
 .features {
     padding: 60px 0;
+    margin-bottom: 100px;
 }
 
 .features .container {
@@ -67,10 +66,6 @@
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-    .hero-content {
-        padding: 0 20px; /* Зменшуємо відступи для мобільних пристроїв */
-    }
-
     .features .container {
         padding: 0 20px; /* Зменшуємо відступи для мобільних пристроїв */
     }

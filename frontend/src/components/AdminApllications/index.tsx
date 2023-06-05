@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import { Spinner } from 'react-bootstrap';
-import { Text} from '@chakra-ui/react';
 import { Grid } from '../../UI';
 
 import { Application } from '../../pages/CatalogCollectionsPage/types';
