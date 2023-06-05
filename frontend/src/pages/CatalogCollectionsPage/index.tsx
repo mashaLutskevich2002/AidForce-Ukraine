@@ -15,7 +15,6 @@ import { Header } from '../../components/Header';
 
 import './CatalogCollectionStyle.css';
 import { CatalogCollectionItem } from './views/CatalogCollectionItem';
-import { Footer } from '../../components/Footer';
 
 export const CatalogCollectionsPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -141,7 +140,6 @@ export const CatalogCollectionsPage = () => {
                         <Paginator currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
                     )}
                 </Box>
-                <Footer />
             </Box>
         </>
     );

@@ -1,17 +1,18 @@
 import React, { ChangeEvent, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
-import { Grid } from '../../UI';
-import { Button, Form, InputGroup } from 'react-bootstrap';
+import { Box, Grid } from "../../UI";
+import { Button, Form, InputGroup, Spinner } from "react-bootstrap";
 import InputMask from 'react-input-mask';
 import { ErrorMessage } from '../../components/ErrorMessage';
 import { useAuthUser } from '../../hooks/useAuthUser';
 
 interface EditPageProps {
     setIsEdit: (bol: boolean) => void;
+    removeUser: ()=> void
 }
 
-export const EditPage = ({ setIsEdit }: EditPageProps) => {
+export const EditPage = ({ setIsEdit, removeUser }: EditPageProps) => {
     const { user } = useAuthUser();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<Record<string, string | undefined>>({});
@@ -98,26 +99,29 @@ export const EditPage = ({ setIsEdit }: EditPageProps) => {
             return;
         }
     };
+    if (isLoading) {
+        return <Spinner />;
+    }
 
-    console.log(isLoading);
     return (
         <Form onSubmit={editForm}>
             <Grid grid-column={2} grid-indent='s'>
                 <Grid.Item>
-                    <Grid grid-indent='xl' grid-column={1}>
+                    <Grid grid-indent='xxl' grid-column={1}>
                         <Grid.Item>Ім'я:</Grid.Item>
                         <Grid.Item>Прізвище:</Grid.Item>
                         <Grid.Item>Електронна пошта:</Grid.Item>
                         <Grid.Item>Номер телефону:</Grid.Item>
                         <Grid.Item>Пароль:</Grid.Item>
                         <Grid.Item>Підтвердіть пароль:</Grid.Item>
+                        <Grid.Item>Ваше фото:</Grid.Item>
                     </Grid>
                 </Grid.Item>
                 <Grid.Item>
                     <Grid grid-indent='xs' grid-column={1}>
                         <InputGroup className='mb-3'>
                             <Form.Control
-                                placeholder="Ваше ім'я"
+                                placeholder={user?.name}
                                 type='text'
                                 value={name}
                                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
@@ -125,7 +129,7 @@ export const EditPage = ({ setIsEdit }: EditPageProps) => {
                         </InputGroup>
                         <InputGroup className='mb-3'>
                             <Form.Control
-                                placeholder='Ваше прізвище'
+                                placeholder={user?.last_name}
                                 type='text'
                                 value={lastName}
                                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)}
@@ -133,7 +137,7 @@ export const EditPage = ({ setIsEdit }: EditPageProps) => {
                         </InputGroup>
                         <InputGroup className='mb-3'>
                             <Form.Control
-                                placeholder='email: examle@gmail.com'
+                                placeholder={user?.email}
                                 type='text'
                                 value={email}
                                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
@@ -144,6 +148,7 @@ export const EditPage = ({ setIsEdit }: EditPageProps) => {
                             <InputMask
                                 mask='+380(99)-99-99-999'
                                 value={phone}
+                                placeholder={user?.phone}
                                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPhone(e.target.value)}
                                 className='mask'
                             />
@@ -166,23 +171,37 @@ export const EditPage = ({ setIsEdit }: EditPageProps) => {
                                 }
                             />
                         </InputGroup>
+                        <InputGroup>
+                            <Form.Control
+                              accept='image/*'
+                              placeholder='upload file'
+                              type='file'
+                              onChange={(e: any) => postPic(e.target.files[0])}
+                            />
+                        </InputGroup>
                     </Grid>
                 </Grid.Item>
             </Grid>
 
             {error.confirmPassword && <ErrorMessage variant='danger' message={error.confirmPassword} />}
-            <Form.Label htmlFor='basic-url'>Ваше фото</Form.Label>
-            <InputGroup>
-                <Form.Control
-                    accept='image/*'
-                    placeholder='upload file'
-                    type='file'
-                    onChange={(e: any) => postPic(e.target.files[0])}
-                />
-            </InputGroup>
-            <Button type='submit' style={{ marginTop: 15 }}>
-                Редагувати
-            </Button>
+
+            <Box box-margin={['m']} box-align='center'>
+                <Grid grid-direction='column' grid-indent='s'>
+                    <Grid.Item>
+                        <Button type='submit' >
+                            Редагувати
+                        </Button>
+                    </Grid.Item>
+                    <Grid.Item>
+                        {user?.role !== 'admin' && (
+                          <Button  type='submit' onClick={removeUser} >
+                              Видалити профіль
+                          </Button>
+                        )}
+                    </Grid.Item>
+
+                </Grid>
+            </Box>
         </Form>
     );
 };

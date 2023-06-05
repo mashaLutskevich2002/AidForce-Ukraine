@@ -54,6 +54,11 @@ const addApplication = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Заповніть поле опис ");
   }
+  const wordCount = description.trim().length;
+  if (wordCount < 20) {
+    res.status(400);
+    throw new Error("Опис повинен містити щонайменше 20 символів");
+  }
 
   if (!picUrl) {
     res.status(400);
@@ -129,7 +134,7 @@ const sendApplicationsStatus = asyncHandler(async (req, res) => {
     // Змінити статус заявки
     application.status = status;
     // Перенести заявку в колекцію, якщо статус "одобрено"
-    if (status === "Одобрено") {
+    if (status === "Схвалено") {
       const collectionData = {
         amount: application.requestedCollection.amount,
         title: application.requestedCollection.title,

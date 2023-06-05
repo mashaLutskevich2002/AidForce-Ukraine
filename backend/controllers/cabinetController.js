@@ -7,12 +7,12 @@ const getCabinet = asyncHandler(async (req, res) => {
 
   try {
     const userCollections = await Collection.find({
-      "user.id": user._id.toString(),
-    });
+      "user.id": user._id.toString()
+    }).sort({ createdAt: -1 });
 
     const userApplications = await Application.find({
-      "requestedCollection.user.id": user._id.toString(),
-    });
+      "requestedCollection.user.id": user._id.toString()
+    }).sort({ createdAt: -1 });
 
     res.json({
       collections: userCollections,

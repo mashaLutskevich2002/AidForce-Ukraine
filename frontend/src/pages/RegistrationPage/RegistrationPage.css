@@ -1,3 +1,41 @@
+.registration-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 80px auto 170px auto;
+    padding: 20px;
+}
+
+.required-field {
+    color: red;
+    font-weight: bold;
+    margin-left: 3px;
+}
+
+.registration-title {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.registration-form {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.registration-error{
+    height: 55px;
+    overflow: hidden;
+}
+
+.registration-error show{
+    height: 100px;
+    display: block;
+}
+
 .mask{
     display: block;
     width: 100%;

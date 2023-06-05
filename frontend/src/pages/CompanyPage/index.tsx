@@ -7,6 +7,8 @@ import { User } from '../../hooks/useAuthUser';
 import { Picture } from '../../components/Picture';
 import moment from 'moment';
 import 'moment/locale/uk';
+import './CompanyPage.css'
+import { CatalogCollectionItem } from "../CatalogCollectionsPage/views/CatalogCollectionItem";
 
 export const CompanyPage = () => {
     const [user, setUser] = useState<User>();
@@ -35,29 +37,43 @@ export const CompanyPage = () => {
         }
         return count;
     }, 0);
-    // const date = new Date(user?.createdAt);
     moment.locale('uk');
     const formattedDate = moment(user?.createdAt).format('DD MMMM YYYY');
-    console.log(formattedDate);
-
-    // const options = { day: "numeric", month: "long" };
-    // const formattedDate = user?.createdAt.toLocaleDateString("uk-UA", options);
-
-    // console.log(formattedDate);
 
     return (
-        <div>
-            <h2>Компанія: {`${user?.name} ${user?.last_name}`}</h2>
-            <Picture width='100px' roundedCircle src={user?.photoUrl!} />
-            <h3>Компанія створена {formattedDate}</h3>
-            <h3>Зборів створено: {collections.length}</h3>
-            <h3>Фотозвітів зроблено: {countReports}</h3>
-            <h3>Збори {user?.role === 'military' ? 'військового' : 'волонтера'}:</h3>
-            <ul>
+          <div className="company-page">
+            <div className="company-info">
+              <div className="profile-picture">
+                <Picture width='100px' roundedCircle src={user?.photoUrl!} />
+              </div>
+              <div>
+                <h2 className="company-name">Компанія: {`${user?.name} ${user?.last_name}`}</h2>
+                <h5 className="company-name" >Телефон: <a href={`tel:${user?.phone}`}>{user?.phone}</a></h5>
+                <h5 className="company-name" >Роль:  {user?.role=== 'military'? 'Військовий': 'Волонтер'}</h5>
+              </div>
+            </div>
+            <div className="company-stats">
+              <div className="stat-block">
+                <h3>Компанія створена</h3>
+                <p>{formattedDate}</p>
+              </div>
+            <div className="stat-block">
+              <h3>Зборів створено</h3>
+              <p>{collections.length}</p>
+            </div>
+            <div className="stat-block">
+              <h3>Фотозвітів зроблено</h3>
+              <p>{countReports}</p>
+            </div>
+            </div>
+            <div className="company-collections">
+              <h3>Збори {user?.role === 'military' ? 'військового' : 'волонтера'}</h3>
+              <div className='card-container m-auto'>
                 {collections.map((collection) => (
-                    <li key={collection._id}>{collection.title}</li>
+                  <CatalogCollectionItem item={collection}/>
                 ))}
-            </ul>
-        </div>
+              </div>
+            </div>
+          </div>
     );
 };

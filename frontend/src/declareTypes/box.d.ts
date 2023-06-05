@@ -6,6 +6,7 @@ declare module 'evokit-box' {
         'box-align'?: string;
         'box-margin'?: (string | null)[] | string;
         'box-padding'?: string[] | string | number;
+        'box-position'? : string
         children: ReactNode | ReactNode[];
     };
     export const Box: FC<BoxProps>;

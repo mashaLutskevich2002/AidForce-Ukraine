@@ -38,7 +38,7 @@ export const GoogleMapUi = ({ location }: GoogleMapUiProps) => {
             lat: coordinates.lat,
             lng: coordinates.lng,
         },
-        zoom: 10,
+        zoom: 8,
     };
 
     return (
@@ -46,7 +46,7 @@ export const GoogleMapUi = ({ location }: GoogleMapUiProps) => {
             <GoogleMap
                 center={mapOptions.center}
                 zoom={mapOptions.zoom}
-                mapContainerStyle={{ width: '100%', height: '100%' }}
+                mapContainerStyle={{ width: '300px', height: '300px' }}
             ></GoogleMap>
         </>
     );

@@ -4,12 +4,15 @@ footer {
     margin-top: 30px;
     padding: 0;
     text-align: center;
-    height: 100px;
+    position: absolute;
+    bottom: 0;
 }
 
 .contact-info {
     font-size: 16px;
     height: 100px;
+
+    margin: 0;
 }
 
 .contact-info a {

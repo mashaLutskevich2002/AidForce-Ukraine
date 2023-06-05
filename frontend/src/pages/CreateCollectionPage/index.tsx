@@ -1,12 +1,12 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import {  VStack } from '@chakra-ui/react';
 import { Button, Form, InputGroup, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 import { useAuthUser } from '../../hooks/useAuthUser';
 import { Popup } from '../../components/Popup';
 import { useNavigate } from 'react-router';
 import { ErrorMessage } from '../../components/ErrorMessage';
-import { Header } from '../../components/Header';
+import { Box } from "../../UI";
+import './CreateCollectionPage.css'
 
 export const CreateCollectionPage = () => {
     const { user } = useAuthUser();
@@ -95,10 +95,11 @@ export const CreateCollectionPage = () => {
     }, []);
 
     return (
-        <>
-            <Header />
-            <VStack spacing='10px'>
-                <h3>Створюй збір, допомагай нашим захисникам</h3>
+           <Box box-align='center' className='createCollectionWrap'>
+               <Box box-margin={[null, null, 'm', null]}>
+                   <h3>Відкривай збір, допомагай нашим захисникам  <i className="fas fa-heart"></i></h3>
+               </Box>
+
                 {showPopup && (
                     <Popup
                         isShowPopup={showPopup}
@@ -108,9 +109,9 @@ export const CreateCollectionPage = () => {
                         message='Збір успішно створений і знаходиться в процесі обробки :)'
                     />
                 )}
-                {isLoading && <Spinner />}
-                {error.errorMessage && <ErrorMessage variant='danger' message={error.errorMessage} />}
-                <Form onSubmit={onSubmit}>
+                <Form onSubmit={onSubmit} className='formCreateCollection'>
+                    {error.errorMessage && <ErrorMessage variant='danger' message={error.errorMessage} />}
+                    {isLoading && <Spinner />}
                     <InputGroup className='mb-3'>
                         <Form.Control
                             placeholder='Збір на..'
@@ -169,7 +170,6 @@ export const CreateCollectionPage = () => {
                         Відкрити збір
                     </Button>
                 </Form>
-            </VStack>
-        </>
+           </Box>
     );
 };

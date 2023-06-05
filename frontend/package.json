@@ -21,6 +21,7 @@
     "@mui/material": "^5.13.2",
     "@mui/styled-engine-sc": "^5.12.0",
     "@react-google-maps/api": "^2.18.1",
+    "@types/react-slick": "^0.23.10",
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "evokit": "^3.2.3",
@@ -37,6 +38,8 @@
     "react-router": "^6.11.1",
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.11"
   },
   "devDependencies": {

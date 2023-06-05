@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { Grid } from '../../../UI';
+import React, { useState } from "react";
+import { Box, Grid } from "../../../UI";
 import { Button, Spinner } from 'react-bootstrap';
 import { ErrorMessage } from '../../../components/ErrorMessage';
-import { Text, VStack } from '@chakra-ui/react';
 import { useAuthUser } from '../../../hooks/useAuthUser';
 import { useNavigate } from 'react-router';
 import { useLocation } from 'react-router-dom';
@@ -40,15 +39,17 @@ export const CabinetMainSetupProfile = () => {
             setIsLoading(false);
         }
     };
+
     if (isLoading) {
         return <Spinner />;
     }
 
     return (
-        <VStack spacing='10px'>
+     <Box box-padding={['s']} box-align='center' className='backgroundSetupProfile'>
             {isLoading && <Spinner />}
             {error.errorMessage && <ErrorMessage variant='danger' message={error.errorMessage} />}
-            <Text>Профіль</Text>
+         <Box box-align='center'> <h3>Профіль користувача</h3></Box>
+         <Box box-margin='s'>
             {!isEdit && (
                 <>
                     <Grid grid-column={2} grid-indent='l'>
@@ -69,28 +70,26 @@ export const CabinetMainSetupProfile = () => {
                             </Grid>
                         </Grid.Item>
                     </Grid>
-                    <Button
-                        type='submit'
-                        onClick={() => {
-                            navigate('/cabinet/setupProfile/edit');
-                            setIsEdit(true);
-                        }}
-                        style={{ marginTop: 15 }}
-                    >
-                        Редагувати профіль
-                    </Button>
-                    {user?.role !== 'admin' && (
-                        <Button onClick={removeUser} style={{ marginTop: 15 }}>
-                            Видалити профіль
+                    <Box box-margin={['m']} box-align='center'>
+                        <Button
+                          type='submit'
+                          onClick={() => {
+                              navigate('/cabinet/setupProfile/edit');
+                              setIsEdit(true);
+                          }}
+                        >
+                            Редагувати профіль
                         </Button>
-                    )}
+                    </Box>
+
                 </>
             )}
+         </Box>
             {isEdit && location.pathname === '/cabinet/setupProfile/edit' && (
                 <>
-                    <EditPage setIsEdit={setIsEdit} />
+                    <EditPage setIsEdit={setIsEdit} removeUser={removeUser} />
                 </>
             )}
-        </VStack>
+        </Box>
     );
 };

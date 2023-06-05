@@ -5,22 +5,24 @@ import { Box } from '../../../UI';
 import { ButtonsPanel } from './ButtonsPanel';
 import * as React from 'react';
 import { useState } from 'react';
+import { useNavigate } from "react-router";
 
 interface ItemApllicationProps {
     item: Application;
 }
 export const ItemApplication = ({ item }: ItemApllicationProps) => {
+    const navigate = useNavigate()
     const [status, setStatus] = useState(item.status);
     let bgBadge;
-    if (status === 'Нове') {
+    if (status === 'Нова') {
         bgBadge = 'light';
-    } else if (status === 'Одобрено') {
+    } else if (status === 'Схвалено') {
         bgBadge = 'success';
     } else {
         bgBadge = 'danger';
     }
     return (
-        <div className='card col center w-100'>
+        <div className='card col center w-100 mb-4'>
             <div className='position-relative w-100'>
                 <img src={item.requestedCollection.picUrl} className='img' />
                 <Badge className='badge' bg={item.requestedCollection.user?.role == 'military' ? 'success' : 'warning'}>
@@ -32,7 +34,10 @@ export const ItemApplication = ({ item }: ItemApllicationProps) => {
 
                 <div className='card-body'>
                     <Text className='title'>{item.requestedCollection.title}</Text>
-                    <Text className='card-text'>{item.requestedCollection.amount} грн</Text>
+                    <Box className='cursor'>
+                        <p onClick={()=> navigate(`/company/${item.requestedCollection.user.id}`)}>Власник збору: {item.requestedCollection.user.name} {item.requestedCollection.user.last_name}</p>
+                    </Box>
+                    <Text className='card-text'>Cума збору: {item.requestedCollection.amount} грн</Text>
                     <Text className='card-text'>{item.requestedCollection.description}</Text>
                     <Link target='_blank' color='black' href={item.requestedCollection.monoBankaUrl}>
                         Лінк на Монобанк

@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import {  Spinner } from 'react-bootstrap';
-import {  Text } from '@chakra-ui/react';
 import { Grid,  } from '../../UI';
 
 import { Application } from '../../pages/CatalogCollectionsPage/types';
@@ -41,7 +40,7 @@ export const AdminApplications = () => {
 
     return (
         <Grid grid-direction='column' grid-align='center' grid-valign='middle'>
-            <Text> Заявки </Text>
+            <h2> Заявки </h2>
             {isLoading && <Spinner />}
             {applications &&
                 applications.map((item: Application) => {
