@@ -19,6 +19,6 @@ export const useAuthUser = () => {
     }
 
     return {
-        user,
+        user: user ?? null
     };
 };

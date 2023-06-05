@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import axios from 'axios';
 import { Button, Spinner, Form, InputGroup } from 'react-bootstrap';
-import { VStack, Text } from '@chakra-ui/react';
 import InputMask from 'react-input-mask';
 import { useNavigate } from 'react-router';
 import { ErrorMessage } from '../../components/ErrorMessage';
@@ -87,8 +86,8 @@ export const RegistrationPage = () => {
     };
 
     return (
-        <VStack spacing='10px'>
-            <Text>Реєстрація</Text>
+      <div className='registration-page'>
+          <h2 className="registration-title">Реєстрація</h2>
             {showPopup && (
                 <Popup
                     isShowPopup={showPopup}
@@ -97,8 +96,13 @@ export const RegistrationPage = () => {
                 />
             )}
             {isLoading && <Spinner />}
-            {error.errorMessage && <ErrorMessage variant='danger' message={error.errorMessage} />}
-            <Form onSubmit={onSubmit}>
+          <div className={error.errorMessage ? 'registration-error show': 'registration-error'}>
+              {error.errorMessage && <ErrorMessage variant='danger' message={error.errorMessage} />}
+          </div>
+
+
+            <Form onSubmit={onSubmit} className='registration-form'>
+                <Form.Label htmlFor='basic-url'>Ім'я  <p className='required-field'>*</p></Form.Label>
                 <InputGroup className='mb-3'>
                     <Form.Control
                         placeholder="Ваше ім'я"
@@ -107,7 +111,9 @@ export const RegistrationPage = () => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
                     />
                 </InputGroup>
+                <Form.Label htmlFor='basic-url'>Прізвище  <p className='required-field'>*</p></Form.Label>
                 <InputGroup className='mb-3'>
+
                     <Form.Control
                         placeholder='Ваше прізвище'
                         type='text'
@@ -115,6 +121,7 @@ export const RegistrationPage = () => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)}
                     />
                 </InputGroup>
+                <Form.Label htmlFor='basic-url'>Email <p className='required-field'>*</p></Form.Label>
                 <InputGroup className='mb-3'>
                     <Form.Control
                         placeholder='email: examle@gmail.com'
@@ -123,7 +130,7 @@ export const RegistrationPage = () => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                     />
                 </InputGroup>
-                <Form.Label htmlFor='basic-url'>Номер телефону</Form.Label>
+                <Form.Label htmlFor='basic-url'>Номер телефону  <p className='required-field'>*</p></Form.Label>
                 <InputGroup className='mb-3'>
                     <InputMask
                         mask='+380(99)-99-99-999'
@@ -132,6 +139,7 @@ export const RegistrationPage = () => {
                         className='mask'
                     />
                 </InputGroup>
+                <Form.Label htmlFor='basic-url'>Пароль <p className='required-field'>*</p></Form.Label>
                 <InputGroup className='mb-3'>
                     <Form.Control
                         placeholder='пароль'
@@ -140,6 +148,7 @@ export const RegistrationPage = () => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                     />
                 </InputGroup>
+                <Form.Label htmlFor='basic-url'>Повторити пароль <p className='required-field'>*</p></Form.Label>
                 <InputGroup className='mb-3'>
                     <Form.Control
                         placeholder='повторити пароль'
@@ -160,7 +169,7 @@ export const RegistrationPage = () => {
                 </InputGroup>
                 {role === 'military' && (
                     <>
-                        <Form.Label htmlFor='basic-url'>Номер військового квитка</Form.Label>
+                        <Form.Label htmlFor='basic-url'>Номер військового квитка  <p className='required-field'>*</p></Form.Label>
                         <InputGroup className='mb-3'>
                             <InputMask
                                 mask='aa-9999-aa'
@@ -171,6 +180,7 @@ export const RegistrationPage = () => {
                         </InputGroup>
                     </>
                 )}
+                <Form.Label htmlFor='basic-url'>Фото профілю </Form.Label>
                 <InputGroup>
                     <Form.Control
                         accept='image/*'
@@ -183,6 +193,6 @@ export const RegistrationPage = () => {
                     Зареєструватися
                 </Button>
             </Form>
-        </VStack>
+      </div>
     );
 };

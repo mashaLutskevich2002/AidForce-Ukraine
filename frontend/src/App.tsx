@@ -12,10 +12,14 @@ import { CabinetMainCollections } from './pages/CabinetLayoutPage/views/CabinetM
 import { CabinetMainSetupProfile } from './pages/CabinetLayoutPage/views/CabinetMainSetupProfile';
 import { CabinetMainApplication } from './pages/CabinetLayoutPage/views/CabinetMainApplication';
 import { CompanyPage } from './pages/CompanyPage';
+import { Footer } from "./components/Footer";
+import { Header } from "./components/Header";
 
 function App() {
     return (
         <BrowserRouter>
+            <div className="App">
+                <Header/>
             <Routes>
                 <Route path='/' Component={MainPage} />
                 <Route path='/login' Component={LoginPage} />
@@ -33,6 +37,8 @@ function App() {
                     <Route path='/cabinet/applications' Component={CabinetMainApplication} />
                 </Route>
             </Routes>
+                <Footer />
+            </div>
         </BrowserRouter>
     );
 }

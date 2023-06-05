@@ -1,0 +1,81 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+/* Hero section */
+.hero {
+    background: linear-gradient(135deg, #FDFCA9, #A1F7FF);
+    padding: 80px 0;
+    padding: 80px 0;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.features {
+    padding: 60px 0;
+}
+
+.features .container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.features .feature-item {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.features .feature-item i {
+    font-size: 48px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.features .feature-item h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.features .feature-item p {
+    font-size: 18px;
+    color: #777;
+}
+
+/* Custom button */
+.custom-button {
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-button:hover {
+    background-color: #3074c4;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .hero-content {
+        padding: 0 20px; /* Зменшуємо відступи для мобільних пристроїв */
+    }
+
+    .features .container {
+        padding: 0 20px; /* Зменшуємо відступи для мобільних пристроїв */
+    }
+
+    .section-divider {
+        margin: 20px 0; /* Зменшуємо відступи для мобільних пристроїв */
+    }
+}

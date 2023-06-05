@@ -1,51 +1,66 @@
 import React from 'react';
-import { Grid, Link } from '../../UI';
+import { Grid, Line, Link } from "../../UI";
 import { useNavigate } from 'react-router';
 import  { useLocation } from 'react-router-dom';
 import { useAuthUser } from '../../hooks/useAuthUser';
+import './CabinetOverlay.css'
 
-interface CabinetOverlayProps {}
-export const CabinetOverlay = ({}: CabinetOverlayProps) => {
+export const CabinetOverlay = () => {
     const { user } = useAuthUser();
     const navigate = useNavigate();
     const location = useLocation();
 
     return (
-        <Grid grid-direction='column' grid-indent='m'>
+        <Grid grid-direction='column' grid-indent='l' className='overlay'>
             <Grid.Item>
                 {user?.role === 'admin' ? (
                     <Link
-                        className={location.pathname === '/cabinet/adminApplications' ? 'link-danger' : 'link-dark'}
                         onClick={() => navigate('/cabinet/adminApplications')}
                     >
+                      <span className={location.pathname === '/cabinet/adminApplications' ? 'danger' : 'link-dark'}>
+                      <i className="fas fa-file-alt"  style={{marginRight: '10px'}}></i>
                         Заявки
+                      </span>
                     </Link>
                 ) : (
                     <Link
-                        className={location.pathname === '/cabinet/collections' ? 'link-danger' : 'link-dark'}
+
                         onClick={() => navigate('/cabinet/collections')}
                     >
+                      <span  className={location.pathname === '/cabinet/collections' ? 'danger' : 'link-dark'}>
+                      <i className="fas fa-shopping-basket"  style={{marginRight: '10px'}}></i>
                         Мої збори
+                        </span>
                     </Link>
                 )}
             </Grid.Item>
+          <Line/>
             <Grid.Item>
                 <Link
-                    className={location.pathname === '/cabinet/setupProfile' ? 'link-danger' : 'link-dark'}
+
                     onClick={() => navigate('/cabinet/setupProfile')}
                 >
+                  <span  className={location.pathname === '/cabinet/setupProfile' ? 'danger' : 'link-dark'}>
+                  <i className="fas fa-cog"  style={{marginRight: '10px'}}></i>
                     Налаштування профілю
+                    </span>
                 </Link>
             </Grid.Item>
             {user?.role !== 'admin' && (
+              <>
+              <Line/>
                 <Grid.Item>
                     <Link
-                        className={location.pathname === '/cabinet/applications' ? 'link-danger' : 'link-dark'}
+
                         onClick={() => navigate('/cabinet/applications')}
                     >
+                      <span  className={location.pathname === '/cabinet/applications' ? 'danger' : 'link-dark'}>
+                      <i className="fas fa-file-alt" style={{marginRight: '10px'}}></i>
                         Мої заявки
+                      </span>
                     </Link>
                 </Grid.Item>
+              </>
             )}
         </Grid>
     );

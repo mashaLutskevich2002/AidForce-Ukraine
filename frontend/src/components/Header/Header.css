@@ -25,7 +25,7 @@
     cursor: pointer;
 }
 
-.text{
+.textHeader{
     font-size: 20px;
 }
 
@@ -45,9 +45,12 @@
     background: white;
 }
 
-.button{
+.buttonHeader{
     color: #1a1e21;
     background: #fcf04e;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 

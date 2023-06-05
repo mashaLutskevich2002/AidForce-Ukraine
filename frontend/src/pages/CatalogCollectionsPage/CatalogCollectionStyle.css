@@ -1,5 +1,6 @@
 .wrap{
     margin-top: 100px;
+    margin-bottom: 120px;
 }
 .containerCollections{
     width: 70%;
@@ -50,6 +51,7 @@
 
 .button{
     background: #e8d53a;
+    color: black;
 }
 
 .background{

@@ -1,0 +1,26 @@
+.createCollectionWrap{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 120px;
+    padding: 20px;
+    overflow-y: auto;
+    margin-bottom: 120px;
+    background: white;
+    width: 80%;
+    box-shadow: 0px 4px 10px #D7D8DA;
+}
+
+.formCreateCollection{
+    width: fit-content;
+    margin: auto;
+}
+
+@media (min-width: 768px) {
+    .createCollectionWrap{
+        margin-top: 120px;
+        width: 40%;
+        padding: 30px;
+    }
+}

@@ -1,10 +1,10 @@
 import React, { ChangeEvent, useState } from 'react';
-import { Link, VStack } from '@chakra-ui/react';
+import { Link } from '@chakra-ui/react';
 import { ErrorMessage } from '../../components/ErrorMessage';
-import { Button, Form, Spinner } from 'react-bootstrap';
-import InputGroup from 'react-bootstrap/InputGroup';
+import { Spinner } from 'react-bootstrap';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import './LoginPage.css'
 
 export const LoginPage = () => {
     const navigate = useNavigate();
@@ -33,37 +33,55 @@ export const LoginPage = () => {
             navigate('/');
             // @ts-ignore
         } catch (e: any) {
+            console.log(error.message);
             setError({ errorMessage: e ? e.response.data.message : undefined });
         }
         setIsLoading(false);
     };
 
     return (
-        <VStack spacing='10px'>
-            {isLoading && <Spinner />}
-            {error.errorMessage && <ErrorMessage variant='danger' message={error.errorMessage} />}
-            <Form onSubmit={onSubmit}>
-                <InputGroup className='mb-3'>
-                    <Form.Control
+          <div className='login-page'>
+              {isLoading && <Spinner animation='border' />}
+              {error.errorMessage && <ErrorMessage variant='danger' message={error.errorMessage} />}
+              <h2>Вхід</h2>
+              <form className='login-form' onSubmit={onSubmit}>
+                  <div className='form-group'>
+                      <label htmlFor='email'>
+                          <i className='material-icons'>mail</i>
+                          Email:
+                      </label>
+                      <input
+                        type='email'
+                        id='email'
                         placeholder='email: examle@gmail.com'
-                        type='text'
                         value={email}
+                        required
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-                    />
-                </InputGroup>
-                <InputGroup className='mb-3'>
-                    <Form.Control
-                        placeholder='пароль'
+                      />
+                  </div>
+                  <div className='form-group'>
+                      <label htmlFor='password'>
+                          <i className='material-icons'>lock</i>
+                          Пароль:
+                      </label>
+                      <input
                         type='password'
+                        placeholder='password'
+                        id='password'
                         value={password}
+                        required
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-                    />
-                </InputGroup>
-                <Button type='submit' style={{ marginTop: 15 }}>
-                    Увійти
-                </Button>
-            </Form>
-            <Link onClick={() => navigate('/registration')}>Зареєструватись</Link>
-        </VStack>
+                      />
+                  </div>
+                  <button type='submit'>
+                      <i className='material-icons'>login</i>
+                      Увійти
+                  </button>
+                  <p style={{marginTop: '20px'}}>
+                      Ще не зареєстровані? <Link onClick={() => navigate('/registration')}>Зареєструватись</Link>
+                  </p>
+              </form>
+
+          </div>
     );
 };

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const applicationSchema = mongoose.Schema(
   {
-    status: { type: String, default: "Нове" },
+    status: { type: String, default: "Нова" },
     requestedCollection: {
       amount: { type: Number },
       title: { type: String },

@@ -1,5 +1,5 @@
 import React from 'react';
 
-import css from './Line.css';
+import './Line.css'
 
-export const Line = () => <div className={css.wrapper} />;
+export const Line = () => <div className='line' />;

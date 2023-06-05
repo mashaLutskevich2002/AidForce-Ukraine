@@ -3,7 +3,7 @@ import { Image, Link } from '@chakra-ui/react';
 import { useAuthUser } from '../../hooks/useAuthUser';
 import './Header.css';
 import { useNavigate } from 'react-router';
-import { Grid, Overlay, Text, Box } from '../../UI';
+import { Grid, Overlay, Box } from '../../UI';
 import { CabinetOverlay } from '../CabinetOverlay';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -36,9 +36,9 @@ export const Header = () => {
                         {user ? (
                             <Grid grid-valign='middle' grid-indent='m'>
                                 <Grid.Item>
-                                    <Text className='text'>
+                                    <span className='textHeader'>
                                         {user.name} {user.last_name}
-                                    </Text>
+                                    </span>
                                 </Grid.Item>
                                 <Grid.Item>
                                     <Image
@@ -48,7 +48,6 @@ export const Header = () => {
                                         onClick={handleShow}
                                     />
                                 </Grid.Item>
-
                                 <Overlay handleClose={handleClose} title='Кабінет' show={show} placement='end'>
                                     <CabinetOverlay />
                                 </Overlay>
@@ -61,12 +60,14 @@ export const Header = () => {
                         ) : (
                             <Grid grid-valign='middle' grid-indent='m'>
                                 <Grid.Item>
-                                    <Button className='button' onClick={() => navigate('/registration')}>
+                                    <Button className='buttonHeader' onClick={() => navigate('/registration')}>
+                                        <i className="material-icons" style={{ marginRight: '5px' }}>person_add</i>
                                         Sign Up
                                     </Button>
                                 </Grid.Item>
                                 <Grid.Item>
-                                    <Button className='button' onClick={() => navigate('/login')}>
+                                    <Button className='buttonHeader' onClick={() => navigate('/login')}>
+                                        <i className="material-icons" style={{ marginRight: '5px' }}> login </i>
                                         Log in
                                     </Button>
                                 </Grid.Item>

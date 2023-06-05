@@ -2,10 +2,10 @@ import React, { ChangeEvent, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router';
 import { Button, Form, InputGroup, Spinner } from 'react-bootstrap';
-import { Text, VStack } from '@chakra-ui/react';
 import { ErrorMessage } from '../../components/ErrorMessage';
 import { useAuthUser } from '../../hooks/useAuthUser';
 import { Popup } from '../../components/Popup';
+import { Box } from "../../UI";
 
 export const CloseCollectionPage = () => {
     const { user } = useAuthUser();
@@ -69,8 +69,7 @@ export const CloseCollectionPage = () => {
     };
 
     return (
-        <VStack spacing='10px'>
-            {isLoading && <Spinner />}
+        <Box className='wrap' box-align='center'>
             {error.errorMessage && <ErrorMessage variant='danger' message={error.errorMessage} />}
             {showPopup && (
                 <Popup
@@ -81,8 +80,15 @@ export const CloseCollectionPage = () => {
                     message='Збір успішно закрит :)'
                 />
             )}
-            <Text>Закрити збір</Text>
+            <Box box-align='center' box-margin={[null, null, 's', null]}>
+                <h3>Закрити збір</h3>
+
+            </Box>
+
             <Form onSubmit={handleFormSubmit}>
+                <Box box-align='center'>
+                    {isLoading && <Spinner />}
+                </Box>
                 <Form.Label htmlFor='basic-url'>Фотозвіт</Form.Label>
                 <InputGroup>
                     <Form.Control
@@ -106,6 +112,6 @@ export const CloseCollectionPage = () => {
                     Закрити збір
                 </Button>
             </Form>
-        </VStack>
+        </Box>
     );
 };

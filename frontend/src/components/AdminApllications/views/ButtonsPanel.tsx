@@ -47,7 +47,7 @@ export const ButtonsPanel = ({ id, setStatus, status }: ButtonsPanelProps) => {
             <Grid grid-indent='xs' grid-align='center'>
                 <Grid.Item>
                     <Button
-                        disabled={Boolean(status !== 'Нове')}
+                        disabled={Boolean(status !== 'Нова')}
                         type='submit'
                         variant='danger'
                         onClick={(e) => onSubmit(e, 'Відхилено')}
@@ -75,14 +75,14 @@ export const ButtonsPanel = ({ id, setStatus, status }: ButtonsPanelProps) => {
                 </Grid.Item>
                 <Grid.Item>
                     <Button
-                        disabled={Boolean(status !== 'Нове')}
+                        disabled={Boolean(status !== 'Нова')}
                         type='submit'
                         variant='success'
-                        onClick={(e) => onSubmit(e, 'Одобрено')}
+                        onClick={(e) => onSubmit(e, 'Схвалено')}
                     >
                         <Grid grid-indent='xs' grid-valign='middle' grid-align='justify'>
                             <Grid.Item>
-                                <span> Одобрити</span>
+                                <span> Схвалити </span>
                             </Grid.Item>
                             <Grid.Item>
                                 <svg

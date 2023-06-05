@@ -8,6 +8,7 @@ import {  Spinner } from 'react-bootstrap';
 import '../CabinetLayoutPage.css';
 import { AdminApplications } from '../../../components/AdminApllications';
 import { CollectionItem } from './CollectionItem';
+import { Box } from "evokit-box";
 
 export const CabinetMainCollections = () => {
     const { user } = useAuthUser();
@@ -43,7 +44,9 @@ export const CabinetMainCollections = () => {
 
     return (
         <Grid grid-direction='column' grid-align='center' grid-valign='middle'>
-            <h3> Мої збори </h3>
+            <Box box-margin={[null, null, 'm', null]}>
+                <h3> Мої збори </h3>
+            </Box>
             {isLoading && <Spinner />}
             <div className='d-flex justify-content-center '>
                 <div className='row row-cols-2 row-cols-md-3 row-cols-lg-5 justify-content-center '>
