@@ -90,7 +90,7 @@ const getCollectionById = asyncHandler(async (req, res) => {
 const closeCollection = asyncHandler(async (req, res) => {
   const collectionId = req.params.id;
   const { photoUrl, description } = req.body;
-  if (!photoUrl || description){
+  if (!photoUrl || !description){
     res.status(400);
     throw new Error("Заповніть всі поля");
   }

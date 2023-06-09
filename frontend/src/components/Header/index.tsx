@@ -29,7 +29,7 @@ export const Header = () => {
                 <Navbar.Collapse id='navbarScroll' className='collapse'>
                     <Nav className='me-auto my-2 my-lg-0 logoCenter ' style={{ maxHeight: '100px' }} navbarScroll>
                         <Navbar.Brand onClick={() => navigate('/')} className='logo'>
-                            NameProject
+                            Helping Hands
                         </Navbar.Brand>
                     </Nav>
                     <Box>
