@@ -84,7 +84,7 @@ export const CreateCollectionPage = () => {
     useEffect(() => {
         const fetchRegions = async () => {
             try {
-                const response = await axios.get('http://api.auto.ria.com/states');
+                const response = await axios.get('https://api.auto.ria.com/states');
                 const regionsData = response.data;
                 setRegions(regionsData);
             } catch (error) {
