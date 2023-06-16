@@ -38,7 +38,7 @@ export const CollectionPage = () => {
     const collectedSum = collection.collectedSum ? `${hryvnia}` : `0`;
     const percent = Math.round((hryvnia / collection.amount) * 100) || 0;
 
-    const isCurrentUserOwner = user?._id === collection.user.id || user?.role === 'admin';
+    const isCurrentUserOwner = user?._id === collection.user.id && !collection.report;
 
     return (
         <Box className='wrap'>
@@ -94,7 +94,7 @@ export const CollectionPage = () => {
                                                       roundedCircle
                                                       width='30px'
                                                       height='30px'
-                                                      src={collection.user.photoUrl}
+                                                      src={ user?.photoUrl ? user?.photoUrl: collection.user.photoUrl}
                                                     />
                                                 </Link>
                                             </Grid.Item>
@@ -115,7 +115,12 @@ export const CollectionPage = () => {
                             </Grid.Item>
 
                             <Grid.Item className='center'>
-                                <Button className='button w-100'>Допомогти</Button>
+                                {collection.report ? (
+                                  <Button disabled className='button w-100'>Зібрано</Button>
+                                ): (
+                                  <Button target='_blank' href={collection.monoBankaUrl} className='button w-100'>Допомогти</Button>
+                                )}
+
                             </Grid.Item>
                         </Grid>
                     </Box>
@@ -123,14 +128,19 @@ export const CollectionPage = () => {
             </div>
             <Grid grid-direction='column' className="product-description" grid-indent='s'>
               <Box box-margin={[null, null, 's', null]}>
-                  <h5>Опис збору</h5>
+                  <h5>{collection.report ? 'Опис фотозвіту' :  'Опис збору'}</h5>
               </Box>
                     <Grid.Item>
-                        <span>{collection.description}</span>
+                        <span>{collection.report ? collection.report.description : collection.description}</span>
                     </Grid.Item>
+                {
+                    !collection.report && (
                     <Grid.Item>
                         <p><i className="fas fa-bullseye"></i> Ціль : {collection.amount} грн </p>
                     </Grid.Item>
+                  )
+                }
+
             </Grid>
             <Box box-margin={['m', null, null,null]} className='map'>
                 <GoogleMapUi location={collection.location} />

@@ -23,7 +23,7 @@ export const MainPage = () => {
           <div className="container">
             <div className="hero-content">
               <Heading as="h1" size="2xl" mb="4">
-                Вебзастосунок для допомоги ЗСУ
+                Hepling Hands
               </Heading>
               <Text fontSize="xl" mb="8">
                 Приєднайтесь до нас та допоможіть Збройним Силам України.
